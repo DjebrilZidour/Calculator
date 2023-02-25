@@ -24,6 +24,7 @@ const minceBtn = document.getElementById("mince-btn")
 const pointBtn = document.getElementById("reset-btn")
 const resetBtn = document.getElementById("reset-btn")
 const equalBtn = document.getElementById("equal-btn")
+const delBtn = document.getElementById("delBtn")
 
 //! -------------------------------------------------------
 const screenCalculator = document.getElementById("display")
@@ -36,7 +37,7 @@ const numberButtons = [
     fiveBtn,
     sixBtn,
     sevenBtn,
-    eightBtn, 
+    eightBtn,
     nineBtn
 ]
 
@@ -44,8 +45,8 @@ let tempNumber = "";
 let numOne = 0
 let numTwo = 0
 let operation
-numberButtons.forEach(function(btnElemnt, index){
-    btnElemnt.addEventListener("click", function() {
+numberButtons.forEach(function (btnElemnt, index) {
+    btnElemnt.addEventListener("click", function () {
         if (tempNumber.length <= 10) {
             tempNumber = tempNumber + index
             screenCalculator.innerText = tempNumber
@@ -54,42 +55,53 @@ numberButtons.forEach(function(btnElemnt, index){
     })
 })
 
-additionBtn.addEventListener("click", function(){
+additionBtn.addEventListener("click", function () {
     numOne = parseFloat(tempNumber);
     tempNumber = ""
     screenCalculator.innerText = "0"
     operation = "+"
 })
 
-minceBtn.addEventListener("click", function(){
+minceBtn.addEventListener("click", function () {
     numOne = parseFloat(tempNumber);
     tempNumber = ""
     screenCalculator.innerText = "0"
     operation = "-"
 })
 
-multiplicationBtn.addEventListener("click", function(){
+multiplicationBtn.addEventListener("click", function () {
     numOne = parseFloat(tempNumber);
     tempNumber = ""
     screenCalculator.innerText = "0"
     operation = "*"
 })
 
-divisionBtn.addEventListener("click", function(){
+divisionBtn.addEventListener("click", function () {
     numOne = parseFloat(tempNumber);
     tempNumber = ""
     screenCalculator.innerText = "0"
     operation = "/"
 })
 
-resetBtn.addEventListener("click", function(){
+resetBtn.addEventListener("click", function () {
     tempNumber = ""
     screenCalculator.innerText = "0"
     operation = "reset"
 })
 
+delBtn.addEventListener("click", function () {
+    const delitAction = tempNumber.split("")
+    delitAction.pop()
+    tempNumber = delitAction.join("")
+    if(tempNumber.length < 1){
+        tempNumber = "0"
+    }
+    screenCalculator.innerText = tempNumber
+})
 
-equalBtn.addEventListener("click", function() {
+
+
+equalBtn.addEventListener("click", function () {
     numTwo = parseFloat(tempNumber)
     switch (operation) {
         case "+":
@@ -106,6 +118,7 @@ equalBtn.addEventListener("click", function() {
         default:
             result = numOne / numTwo;
     }
+    tempNumber = result + ""
     screenCalculator.innerText = result
 })
 
