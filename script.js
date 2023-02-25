@@ -21,7 +21,7 @@ const minceBtn = document.getElementById("mince-btn")
 
 //! EXTRA BUTTONS ----------------------------------------------
 
-const pointBtn = document.getElementById("reset-btn")
+const pointBtn = document.getElementById("point-btn")
 const resetBtn = document.getElementById("reset-btn")
 const equalBtn = document.getElementById("equal-btn")
 const delBtn = document.getElementById("delBtn")
@@ -90,6 +90,13 @@ divisionBtn.addEventListener("click", function () {
     tempNumber = ""
     screenCalculator.innerText = "0"
     operation = "/"
+})
+
+pointBtn.addEventListener("click", function(){
+    tempNumber = tempNumber + "."
+    screenCalculator.innerText = tempNumber
+
+
 })
 function reset() {
     tempNumber = ""
