@@ -44,9 +44,14 @@ const numberButtons = [
 let tempNumber = "";
 let numOne = 0
 let numTwo = 0
-let operation
+let operation = "";
+let isResultCalculated = false;
 numberButtons.forEach(function (btnElemnt, index) {
     btnElemnt.addEventListener("click", function () {
+        if(isResultCalculated === true){
+            reset();
+            isResultCalculated = false
+        }
         if (tempNumber.length <= 10) {
             tempNumber = tempNumber + index
             screenCalculator.innerText = tempNumber
@@ -56,6 +61,7 @@ numberButtons.forEach(function (btnElemnt, index) {
 })
 
 additionBtn.addEventListener("click", function () {
+    isResultCalculated = false
     numOne = parseFloat(tempNumber);
     tempNumber = ""
     screenCalculator.innerText = "0"
@@ -63,6 +69,7 @@ additionBtn.addEventListener("click", function () {
 })
 
 minceBtn.addEventListener("click", function () {
+    isResultCalculated = false
     numOne = parseFloat(tempNumber);
     tempNumber = ""
     screenCalculator.innerText = "0"
@@ -70,6 +77,7 @@ minceBtn.addEventListener("click", function () {
 })
 
 multiplicationBtn.addEventListener("click", function () {
+    isResultCalculated = false
     numOne = parseFloat(tempNumber);
     tempNumber = ""
     screenCalculator.innerText = "0"
@@ -77,17 +85,19 @@ multiplicationBtn.addEventListener("click", function () {
 })
 
 divisionBtn.addEventListener("click", function () {
+    isResultCalculated = false
     numOne = parseFloat(tempNumber);
     tempNumber = ""
     screenCalculator.innerText = "0"
     operation = "/"
 })
-
-resetBtn.addEventListener("click", function () {
+function reset() {
     tempNumber = ""
+    numOne = 0;
+    numTwo = 0;
     screenCalculator.innerText = "0"
-    operation = "reset"
-})
+}
+resetBtn.addEventListener("click", reset)
 
 delBtn.addEventListener("click", function () {
     const delitAction = tempNumber.split("")
@@ -113,12 +123,12 @@ equalBtn.addEventListener("click", function () {
         case "*":
             result = numOne * numTwo;
             break
-        case "reset":
-            result = "0"
+        
         default:
             result = numOne / numTwo;
     }
     tempNumber = result + ""
+    isResultCalculated = true;
     screenCalculator.innerText = result
 })
 
