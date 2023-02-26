@@ -27,7 +27,8 @@ const equalBtn = document.getElementById("equal-btn")
 const delBtn = document.getElementById("delBtn")
 const containerOptionBtn = document.getElementById("containerOptionBtn")
 const optionBtn = document.getElementById("optionBtn")
-
+containerOptionBtn.style.justifyContent = "flex-start"
+let isClicked = "left"
 //! -------------------------------------------------------
 const screenCalculator = document.getElementById("display")
 const numberButtons = [
@@ -117,15 +118,19 @@ delBtn.addEventListener("click", function () {
     }
     screenCalculator.innerText = tempNumber
 })
-let isClicked = true;
+
 optionBtn.addEventListener("click", function(){
-    isClicked = true
-    if (isClicked = true) {
+    if (isClicked === "left") {
         containerOptionBtn.style.justifyContent = "flex-end"
-        isClicked = false
-    } else {
+        isClicked = "right"
+        return
+    } 
+    if (isClicked === "right") {
         containerOptionBtn.style.justifyContent = "flex-start"
+        isClicked = "left"
+        return
     }
+    
 })
 
 
