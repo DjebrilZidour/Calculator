@@ -49,112 +49,167 @@ let numOne = 0
 let numTwo = 0
 let operation = "";
 let isResultCalculated = false;
-numberButtons.forEach(function (btnElemnt, index) {
-    btnElemnt.addEventListener("click", function () {
-        if(isResultCalculated === true){
-            reset();
-            isResultCalculated = false
-        }
-        if (tempNumber.length <= 10) {
-            tempNumber = tempNumber + index
-            screenCalculator.innerText = tempNumber
-        }
+
+
+
+
+
+
+
+
+
+function calculator() {
+
+
+    console.log("i'm inside")
+
+    numberButtons.forEach(function (btnElemnt, index) {
+        btnElemnt.addEventListener("click", function () {
+            if (isResultCalculated === true) {
+                reset();
+                isResultCalculated = false
+            }
+            if (tempNumber.length <= 10) {
+                tempNumber = tempNumber + index
+                screenCalculator.innerText = tempNumber
+                console.log("i wrote the number")
+            }
+
+        })
+    })
+
+    additionBtn.addEventListener("click", function () {
+        isResultCalculated = false
+        numOne = parseFloat(tempNumber);
+        tempNumber = ""
+        screenCalculator.innerText = "0"
+        operation = "+"
+    })
+
+    minceBtn.addEventListener("click", function () {
+        isResultCalculated = false
+        numOne = parseFloat(tempNumber);
+        tempNumber = ""
+        screenCalculator.innerText = "0"
+        operation = "-"
+    })
+
+    multiplicationBtn.addEventListener("click", function () {
+        isResultCalculated = false
+        numOne = parseFloat(tempNumber);
+        tempNumber = ""
+        screenCalculator.innerText = "0"
+        operation = "*"
+    })
+
+    divisionBtn.addEventListener("click", function () {
+        isResultCalculated = false
+        numOne = parseFloat(tempNumber);
+        tempNumber = ""
+        screenCalculator.innerText = "0"
+        operation = "/"
+    })
+
+    pointBtn.addEventListener("click", function () {
+        tempNumber = tempNumber + "."
+        screenCalculator.innerText = tempNumber
+
 
     })
-})
-
-additionBtn.addEventListener("click", function () {
-    isResultCalculated = false
-    numOne = parseFloat(tempNumber);
-    tempNumber = ""
-    screenCalculator.innerText = "0"
-    operation = "+"
-})
-
-minceBtn.addEventListener("click", function () {
-    isResultCalculated = false
-    numOne = parseFloat(tempNumber);
-    tempNumber = ""
-    screenCalculator.innerText = "0"
-    operation = "-"
-})
-
-multiplicationBtn.addEventListener("click", function () {
-    isResultCalculated = false
-    numOne = parseFloat(tempNumber);
-    tempNumber = ""
-    screenCalculator.innerText = "0"
-    operation = "*"
-})
-
-divisionBtn.addEventListener("click", function () {
-    isResultCalculated = false
-    numOne = parseFloat(tempNumber);
-    tempNumber = ""
-    screenCalculator.innerText = "0"
-    operation = "/"
-})
-
-pointBtn.addEventListener("click", function(){
-    tempNumber = tempNumber + "."
-    screenCalculator.innerText = tempNumber
-
-
-})
-function reset() {
-    tempNumber = ""
-    numOne = 0;
-    numTwo = 0;
-    screenCalculator.innerText = "0"
-}
-resetBtn.addEventListener("click", reset)
-
-delBtn.addEventListener("click", function () {
-    const delitAction = tempNumber.split("")
-    delitAction.pop()
-    tempNumber = delitAction.join("")
-    if(tempNumber.length < 1){
-        tempNumber = "0"
+    function reset() {
+        tempNumber = ""
+        numOne = 0;
+        numTwo = 0;
+        screenCalculator.innerText = "0"
     }
-    screenCalculator.innerText = tempNumber
-})
+    resetBtn.addEventListener("click", reset)
 
-optionBtn.addEventListener("click", function(){
+    delBtn.addEventListener("click", function () {
+        const delitAction = tempNumber.split("")
+        delitAction.pop()
+        tempNumber = delitAction.join("")
+        if (tempNumber.length < 1) {
+            tempNumber = "0"
+        }
+        screenCalculator.innerText = tempNumber
+    })
+    equalBtn.addEventListener("click", function () {
+        numTwo = parseFloat(tempNumber)
+        switch (operation) {
+            case "+":
+                result = numOne + numTwo;
+                break;
+            case "-":
+                result = numOne - numTwo;
+                break;
+            case "*":
+                result = numOne * numTwo;
+                break
+
+            default:
+                result = numOne / numTwo;
+        }
+        tempNumber = result + ""
+        isResultCalculated = true;
+        screenCalculator.innerText = result
+    })
+
+
+}
+
+
+let isworking = false;
+
+screenCalculator.innerText = "SCREEN Off"
+
+optionBtn.addEventListener("click", function () {
     if (isClicked === "left") {
         containerOptionBtn.style.justifyContent = "flex-end"
+        screenCalculator.innerText = "0"
+        console.log("turned on")
         isClicked = "right"
+        isworking = true;
+        console.log(isworking);
+
+
+        return isworking
+    }
+    if (isClicked === "right") {
+
+        isworking = false;
+        containerOptionBtn.style.justifyContent = "flex-start"
+        screenCalculator.innerText = "SCREEN Off"
+        console.log("turned off")
+        isClicked = "left"
+        isResultCalculated = false;
+        isworking = false;
+        return isworking;
+    }
+
+})
+
+
+// checkON(isworking, calculator)
+
+
+
+function checkON(tttt, callBack) {
+    console.log("checking!!!!!")
+    if (tttt === true) {
+        console.log("it should work")
+        callBack()
+    }else{
         return
     } 
-    if (isClicked === "right") {
-        containerOptionBtn.style.justifyContent = "flex-start"
-        isClicked = "left"
-        return
-    }
-    
-})
+
+}
+
+checkON(isworking, calculator)
 
 
 
-equalBtn.addEventListener("click", function () {
-    numTwo = parseFloat(tempNumber)
-    switch (operation) {
-        case "+":
-            result = numOne + numTwo;
-            break;
-        case "-":
-            result = numOne - numTwo;
-            break;
-        case "*":
-            result = numOne * numTwo;
-            break
-        
-        default:
-            result = numOne / numTwo;
-    }
-    tempNumber = result + ""
-    isResultCalculated = true;
-    screenCalculator.innerText = result
-})
+
+
 
 
 
