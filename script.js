@@ -25,6 +25,8 @@ const pointBtn = document.getElementById("point-btn")
 const resetBtn = document.getElementById("reset-btn")
 const equalBtn = document.getElementById("equal-btn")
 const delBtn = document.getElementById("delBtn")
+const containerOptionBtn = document.getElementById("containerOptionBtn")
+const optionBtn = document.getElementById("optionBtn")
 
 //! -------------------------------------------------------
 const screenCalculator = document.getElementById("display")
@@ -114,6 +116,16 @@ delBtn.addEventListener("click", function () {
         tempNumber = "0"
     }
     screenCalculator.innerText = tempNumber
+})
+let isClicked = true;
+optionBtn.addEventListener("click", function(){
+    isClicked = true
+    if (isClicked = true) {
+        containerOptionBtn.style.justifyContent = "flex-end"
+        isClicked = false
+    } else {
+        containerOptionBtn.style.justifyContent = "flex-start"
+    }
 })
 
 
