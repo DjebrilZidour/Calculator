@@ -70,11 +70,7 @@ optionBtn.addEventListener("click", function () {
         screenCalculator.innerText = "SCREEN Off"
         isClicked = "left"
         isResultCalculated = false;
-        isworking = false;
-        tempNumber = "";
-        numOne = 0
-        numTwo = 0
-        operation = "";
+        reset()
         isworking = false;
         console.log("is working: ", isworking);
         return isworking
