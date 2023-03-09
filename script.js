@@ -29,7 +29,9 @@ const containerOptionBtn = document.getElementById("containerOptionBtn")
 const optionBtn = document.getElementById("optionBtn")
 containerOptionBtn.style.justifyContent = "flex-start"
 let isClicked = "left"
-
+const normalDisp = document.getElementById("normalDisp")
+const longDisp = document.getElementById("try")
+longDisp.style.display = "none"
 const onOffText = document.getElementById("on-off")
 //! -------------------------------------------------------
 const screenCalculator = document.getElementById("display")
@@ -45,6 +47,7 @@ let numberButtons = [
     eightBtn,
     nineBtn
 ]
+const animationContainer = document.getElementsByClassName("")
 
 let tempNumber = "";
 let numOne = 0
@@ -58,6 +61,7 @@ screenCalculator.innerText = "SCREEN Off";
 optionBtn.addEventListener("click", function () {
 
     if (isClicked === "left") {
+        tempNumber = "";
         containerOptionBtn.style.justifyContent = "flex-end"
         screenCalculator.innerText = "0"
         isClicked = "right"
@@ -102,6 +106,7 @@ numberButtons.forEach(function (btnElemnt, index) {
         }
    })
 })
+
 
 additionBtn.addEventListener("click", function () {
     if(isworking === false){
@@ -202,9 +207,22 @@ equalBtn.addEventListener("click", function () {
     }
     tempNumber = result + ""
     isResultCalculated = true;
+
+    if (result.length < 11){
+        // screenCalculator.style.fontSize = "2rem"
+        longDisp.style.display = "none"
+        normalDisp.style.display = "flex"
+    }else{
+        // screenCalculator.style.fontSize = "1.7rem"
+        normalDisp.style.display = "none"
+        longDisp.style.display = "flex"
+    }
     screenCalculator.innerText = result
-    
 })
+
+
+
+
 
 
 
@@ -351,6 +369,7 @@ equalBtn.addEventListener("click", function () {
 //     screenCalculator.innerText = tempNumber
 // })
 
+
 // optionBtn.addEventListener("click", function(){
 //     if (isClicked === "left") {
 //         containerOptionBtn.style.justifyContent = "flex-end"
@@ -374,6 +393,7 @@ equalBtn.addEventListener("click", function () {
 //             result = numOne + numTwo;
 //             break;
 //         case "-":
+//     tempNumber = result + ""
 //             result = numOne - numTwo;
 //             break;
 //         case "*":
@@ -383,7 +403,6 @@ equalBtn.addEventListener("click", function () {
 //         default:
 //             result = numOne / numTwo;
 //     }
-//     tempNumber = result + ""
 //     isResultCalculated = true;
 //     screenCalculator.innerText = result
 // })
