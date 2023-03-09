@@ -29,9 +29,9 @@ const containerOptionBtn = document.getElementById("containerOptionBtn")
 const optionBtn = document.getElementById("optionBtn")
 containerOptionBtn.style.justifyContent = "flex-start"
 let isClicked = "left"
-const normalDisp = document.getElementById("normalDisp")
-const longDisp = document.getElementById("try")
-longDisp.style.display = "none"
+// const normalDisp = document.getElementById("normalDisp")
+// const longDisp = document.getElementById("try")
+// longDisp.style.display = "none"
 const onOffText = document.getElementById("on-off")
 //! -------------------------------------------------------
 const screenCalculator = document.getElementById("display")
@@ -61,7 +61,7 @@ screenCalculator.innerText = "SCREEN Off";
 optionBtn.addEventListener("click", function () {
 
     if (isClicked === "left") {
-        tempNumber = "";
+        reset()
         containerOptionBtn.style.justifyContent = "flex-end"
         screenCalculator.innerText = "0"
         isClicked = "right"
@@ -209,13 +209,13 @@ equalBtn.addEventListener("click", function () {
     isResultCalculated = true;
 
     if (result.length < 11){
-        // screenCalculator.style.fontSize = "2rem"
-        longDisp.style.display = "none"
-        normalDisp.style.display = "flex"
+        screenCalculator.style.fontSize = "2rem"
+        // longDisp.style.display = "none"
+        // normalDisp.style.display = "flex"
     }else{
-        // screenCalculator.style.fontSize = "1.7rem"
-        normalDisp.style.display = "none"
-        longDisp.style.display = "flex"
+         screenCalculator.style.fontSize = "1.7rem"
+        // normalDisp.style.display = "none"
+        // longDisp.style.display = "flex"
     }
     screenCalculator.innerText = result
 })
